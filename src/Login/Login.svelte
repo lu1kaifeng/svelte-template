@@ -15,9 +15,6 @@
     </div>
 </div>
 <style>
-    .container{
-        height: 100%;
-    }
     .center {
         position: absolute;
         top: 50%;
