@@ -5,7 +5,9 @@ import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import copy from "rollup-plugin-copy";
-import dev from 'rollup-plugin-dev'
+import dev from 'rollup-plugin-dev';
+import autoPreprocess from 'svelte-preprocess';
+import { scss } from 'svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -26,7 +28,8 @@ export default {
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
-			emitCss: true
+			emitCss: true,
+			preprocess: autoPreprocess({ /* options */ })
 		}),
 
 		// If you have external dependencies installed from
