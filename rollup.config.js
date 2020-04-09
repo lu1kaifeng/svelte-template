@@ -18,9 +18,6 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
-		dev({
-			proxy: "http://127.0.0.1"
-		}),
 		copy({
 			targets: [
 				{ src: ['theme/font/*'], dest: 'public/build/font' }
@@ -56,7 +53,10 @@ export default {
 		}),
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
-		!production && serve(),
+		!production && dev({
+			dirs:['public'],
+			proxy: { '/*': 'http://127.0.0.1:2233/' }
+		}),
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
